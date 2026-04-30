@@ -6,7 +6,6 @@ public class AudioManager : MonoBehaviour
     string mixerName;
     public AudioMixer mixer;
 
-
     public void HoldMixerName(string name)
     {
         mixerName = name;
