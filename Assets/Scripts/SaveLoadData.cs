@@ -11,8 +11,6 @@ public class GameSettings
     public float sfxVolume;
     public string keybindSelected;
     public int fullscreenMode;
-    public string resolutionText;
-    public string keybindsText;
 }
 public class SaveLoadData : MonoBehaviour
 {
@@ -21,8 +19,6 @@ public class SaveLoadData : MonoBehaviour
     public Slider masterVolume;
     public Slider sfxVolume;
     public Slider musicVolume;
-    public Text keybindsText;
-    public Text resolutionText;
 
 
     /// <summary>
@@ -46,13 +42,6 @@ public class SaveLoadData : MonoBehaviour
             LoadGame();
         }
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SaveGame();
-        }
-    }
 
     public void GetDataToSave()
     {
@@ -61,7 +50,6 @@ public class SaveLoadData : MonoBehaviour
         _gameSettings.masterVolume = masterVolume.value;
         _gameSettings.sfxVolume = sfxVolume.value;
         _gameSettings.musicVolume = musicVolume.value;
-        _gameSettings.keybindsText = keybindsText;
 
     }
 
@@ -73,6 +61,7 @@ public class SaveLoadData : MonoBehaviour
 
     public void SaveGame()
     {
+        Debug.Log("Saved!");
         GetDataToSave();
         SaveJSON(_gameSettings, filePath);
     }

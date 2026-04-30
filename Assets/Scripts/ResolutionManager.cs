@@ -8,8 +8,6 @@ public class ResolutionManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] Text _label;
-    //[SerializeField] Toggle _fullScreenWindowToggle;
-    //[SerializeField] Toggle _windowedToggle;
     #endregion
 
     #region properties

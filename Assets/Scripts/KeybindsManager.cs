@@ -16,8 +16,9 @@ public class KeybindsManager : MonoBehaviour
     #endregion
 
     #region Variables
-    public string currentKeyBind = "WASD";
+    public string currentKeyBind;
     public Dropdown keybindsDropDown;
+    public Text _label;
     #endregion
 
     private void Update()
@@ -26,6 +27,11 @@ public class KeybindsManager : MonoBehaviour
         {
             Debug.Log($"Input is {currentKeyBind}");
         }
+        _label.text = currentKeyBind;
+    }
+
+    public void SetKeybinds()
+    {
         if (keybindsDropDown.value == 0)
         {
             currentKeyBind = "WASD";
