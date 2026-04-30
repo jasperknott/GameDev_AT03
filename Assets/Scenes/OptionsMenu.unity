@@ -1800,11 +1800,25 @@ MonoBehaviour:
     m_Options:
     - m_Text: 'Fullscreen '
       m_Image: {fileID: 0}
+    - m_Text: Borderless Window
+      m_Image: {fileID: 0}
     - m_Text: Windowed
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 730626598}
+        m_TargetAssemblyTypeName: ResolutionManager, Assembly-CSharp
+        m_MethodName: SetScreenMode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &660414526
 MonoBehaviour:
@@ -1970,6 +1984,8 @@ GameObject:
   m_Component:
   - component: {fileID: 730626596}
   - component: {fileID: 730626595}
+  - component: {fileID: 730626597}
+  - component: {fileID: 730626598}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2004,6 +2020,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &730626597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730626594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30690d9d2a3473449e5dc4f10b413e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Example
+  mixer: {fileID: 24100000, guid: 980ab2ad028a5694091ac30e2757912a, type: 2}
+--- !u!114 &730626598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730626594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeecd91b278797449a2a6486f083e169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResolutionManager
 --- !u!1 &751494463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3241,13 +3282,37 @@ MonoBehaviour:
   m_FillRect: {fileID: 131876080}
   m_HandleRect: {fileID: 1870377711}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_MinValue: -80
+  m_MaxValue: 20
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 730626597}
+        m_TargetAssemblyTypeName: Example, Assembly-CSharp
+        m_MethodName: HoldMixerName
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: musicVolume
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 730626597}
+        m_TargetAssemblyTypeName: Example, Assembly-CSharp
+        m_MethodName: UpdateMixerValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1320367012
 GameObject:
   m_ObjectHideFlags: 0
@@ -3959,13 +4024,37 @@ MonoBehaviour:
   m_FillRect: {fileID: 1653776861}
   m_HandleRect: {fileID: 1354967064}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MinValue: -80
+  m_MaxValue: 20
+  m_WholeNumbers: 1
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 730626597}
+        m_TargetAssemblyTypeName: Example, Assembly-CSharp
+        m_MethodName: HoldMixerName
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: masterVolume
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 730626597}
+        m_TargetAssemblyTypeName: Example, Assembly-CSharp
+        m_MethodName: UpdateMixerValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1579971191
 GameObject:
   m_ObjectHideFlags: 0
@@ -5219,13 +5308,37 @@ MonoBehaviour:
   m_FillRect: {fileID: 1620183610}
   m_HandleRect: {fileID: 1744587935}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_MinValue: -80
+  m_MaxValue: 20
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 730626597}
+        m_TargetAssemblyTypeName: Example, Assembly-CSharp
+        m_MethodName: HoldMixerName
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: sfxVolume
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 730626597}
+        m_TargetAssemblyTypeName: Example, Assembly-CSharp
+        m_MethodName: UpdateMixerValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1978818863
 GameObject:
   m_ObjectHideFlags: 0

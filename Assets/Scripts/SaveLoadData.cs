@@ -1,20 +1,30 @@
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 using System.IO;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEditor.Overlays;
+using System;
 
+[Serializable]
 public class GameSettings
 {
-    //public float masterVolume;
-    //public float bgmVolume;
-    //public float sfxVolume;
-    //public int resolutionIndex;
+    public float masterVolume;
+    public float musicVolume;
+    public float sfxVolume;
     public string keybindSelected;
+    public int fullscreenMode;
+    public string resolutionText;
+    public string keybindsText;
 }
 public class SaveLoadData : MonoBehaviour
 {
+    public KeybindsManager keybindsManager;
+    public ResolutionManager resolutionManager;
+    public Slider masterVolume;
+    public Slider sfxVolume;
+    public Slider musicVolume;
+    public Text keybindsText;
+    public Text resolutionText;
+
+
     /// <summary>
     /// Variables that need to be saved:
     ///     - Keybinds
@@ -24,17 +34,38 @@ public class SaveLoadData : MonoBehaviour
     ///         - SFX
     ///     - Resolution
     /// </summary>
+     
     #region Variables
-    public static string filePath = Application.streamingAssetsPath + "/saveData.json";
+    public static string filePath = $"{Application.streamingAssetsPath}/saveData.json";
+    [SerializeField] GameSettings _gameSettings;
     #endregion
-
-    private void Start()
+    private void OnEnable()
     {
-        //GameSettings _saveData;
-        GameSettings settings = new GameSettings { keybindSelected = "WASD" };
+        if (File.Exists(filePath))
+        {
+            LoadGame();
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SaveGame();
+        }
+    }
+
+    public void GetDataToSave()
+    {
+        _gameSettings.keybindSelected = keybindsManager.currentKeyBind;
+        _gameSettings.fullscreenMode = resolutionManager.CurrentFullscreenMode;
+        _gameSettings.masterVolume = masterVolume.value;
+        _gameSettings.sfxVolume = sfxVolume.value;
+        _gameSettings.musicVolume = musicVolume.value;
+        _gameSettings.keybindsText = keybindsText;
 
     }
-    void SaveJSON(SaveLoadData data, string path)
+
+    void SaveJSON(GameSettings data, string path)
     {
         string lineToSave = JsonUtility.ToJson(data);
         File.WriteAllText(path, lineToSave);
@@ -42,8 +73,28 @@ public class SaveLoadData : MonoBehaviour
 
     public void SaveGame()
     {
-        //GetDataToSave();
-        //SaveJSON(_saveData, filePath);
-        SceneManager.LoadScene(0);
+        GetDataToSave();
+        SaveJSON(_gameSettings, filePath);
+    }
+    
+    GameSettings LoadData()
+    {
+        string loadedData = File.ReadAllText(filePath);
+        return JsonUtility.FromJson<GameSettings>(loadedData);
+    }
+
+    void SendDataFromLoad()
+    {
+        keybindsManager.currentKeyBind = _gameSettings.keybindSelected;
+        resolutionManager.CurrentFullscreenMode = _gameSettings.fullscreenMode;
+        masterVolume.value = _gameSettings.masterVolume;
+        sfxVolume.value = _gameSettings.sfxVolume;
+        musicVolume.value = _gameSettings.musicVolume;
+    }
+
+    public void LoadGame()
+    {
+        _gameSettings = LoadData();
+        SendDataFromLoad();
     }
 }
